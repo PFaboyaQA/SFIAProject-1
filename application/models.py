@@ -4,6 +4,7 @@ class Players(db.Model):
 	player_id = db.Column(db.Integer, primary_key=True)
 	first_name = db.Column(db.String(30), nullable=False)
 	last_name = db.Column(db.String(30), nullable=False)
+	fav_genre_id = db.Column(db.Integer)
 	email = db.Column(db.String(50), nullable=False, unique=True)
 	fav_game_id = db.Column(db.Integer)
 

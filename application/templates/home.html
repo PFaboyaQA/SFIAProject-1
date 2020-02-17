@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
 {% block body_content %}
 	<h1>Customer information</h1>
-		<div>
-			<h2>{{ player.first_name }} {{ player.last_name}}</h2>
-			<p>{{ player.fav_genre_id }}</p>
-			<p>{{ player.email }}</p>
-			<p>{{ player.fav_game_id }}</p>
-		</div>
+	{% if players %}
+		{% for player in players %}
+
+			<div>
+				<h2>Name: {{ player.first_name }} {{ player.last_name}}</h2>
+				<p>Favourite Genre: {{ player.fav_genre_id }}</p>
+				<p>Email: {{ player.email }}</p>
+				<p>Favourite Game: {{ player.fav_game_id }}</p>
+			</div>
+	{% else %}
+		<p>There are no players</P>
 
 {% endblock %}
