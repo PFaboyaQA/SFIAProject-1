@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 from application import app, db
 from applications.forms import AddGenreForm, AddGameForm, PlayersForm
 from applications.models import Players, Genres, Games
