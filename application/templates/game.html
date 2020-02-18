@@ -27,6 +27,29 @@
                         	</div>
         	{% else %}
                 	<p>There are no games</P>
-
+	<div class='form' action=''>
+		<form method='POST' action=''>
+			{{ form.hidden_tag }}
+			{{ form.game_name.label }}
+			{{ form.game_name }}
+			<br>
+			{{ form.genre_id.label }}
+			{{ form.genre_id }}
+			<br>
+			{{ form.price.label }}
+			{{ form.price }}
+			<br>
+			{{ form.company.label }}
+			{{ form.company }}
+			<br>
+			{{ form.main_platform.label }}
+			{{ form.main_platfrom }}
+			<br>
+			{{ form.buyer_id.label }}
+			{{ form.buyer_id }}
+			<br>
+			{{ form.submit }}
+		</form>
+	</div>			
 {% endblock %}
 
