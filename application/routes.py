@@ -1,7 +1,7 @@
 from flask import render_template, url_for, redirect, request
 from application import app, db
-from applications.forms import AddGenreForm, AddGameForm, PlayersForm
-from applications.models import Players, Genres, Games
+from application.forms import AddGenreForm, AddGameForm, PlayerForm
+from application.models import Players, Genres, Games
 
 @app.route('/')
 @app.route('/home')
@@ -11,57 +11,59 @@ def home():
 
 @app.route('/genre', methods=['GET', 'POST'])
 def genre():
-	if add_genre = AddGenreForm()
-		add_genre_to_db = Genre(
+        add_genre = AddGenreForm()
+        if add_genre.validate_on_submit():
+                add_genre_to_db = Genres(
 				genre_name = add_genre.genre_name.data
 				)
-		db.session.add(add_genre_to_db)
-		db.session.commit()
-		return redirect(url_for('genre'))
-	else:
-		print(add_genre.errors)
-		genreData = Genres.query.all()
-	return render_template('genre.html', title='Genre', genres=genreData, form=add_genre)
+                db.session.add(add_genre_to_db)
+                db.session.commit()
+                return redirect(url_for('genre'))
+        else:
+	        print(add_genre.errors)
+	        genreData = Genres.query.all()
+        return render_template('genre.html', title='Genre', genres=genreData, form=add_genre)
 
-@app.route('/game', methods={'GET', 'POST')
+@app.route('/game', methods=['GET', 'POST'])
 def game():
-	if add_game = AddGameForm
-		add_game_to_db = (
-				name = add_game.game_name.data,
-				genre_id = add_game.genre_id.data,
-				price = add_game.price.data,
-				company = add_game.company.data,
-				main_platform = add_game.main_platform.data,
-				buyer_id = add_game.buter_id.data
-				)
-		db.session.add(add_game_to_db)
-		db.session.commit()
-		return redirect(url_for('game'))
-	else:
-		print(add_game.errors)
-		gameData = Games.query.all()
-	return render_template('game.html', title='Games', games=gameData, form=add_genre)
+        add_game = AddGameForm()
+        if add_game.validate_on_submit():
+                add_game_to_db = Games(
+                                name = add_game.game_name.data,
+                                genre_id = add_game.genre_id.data,
+                                price = add_game.price.data,
+                                company = add_game.company.data,
+                                main_platform = add_game.main_platform.data,
+                                buyer_id = add_game.buyer_id.data
+                                )
+                db.session.add(add_game_to_db)
+                db.session.commit()
+                return redirect(url_for('game'))
+        else:
+                print(add_game.errors)
+                gameData = Games.query.all()
+        return render_template('game.html', title='Games', games=gameData, form=add_game)
 
-@app.route('/register', methods=('GET', 'POST')
+@app.route('/register', methods=['GET', 'POST'])
 def post():
-	form = PlayersForm
-	if form.validate_on_submit():
-		playerData = players(
-			first_name = form.first_name.data
-			last_name = form.last_name.data
-			fav_genre_id = form.fav_genre_id.data
-			email = form.email.data
-			fav_game_id = form.fav_game_id.data
-			)
-		db.session.add(playerData)
-		db.session.commit()
-		return redirect(url_for('home'))
-	else:
-		print(form.errors)
+        form = PlayerForm()
+        if form.validate_on_submit():
+                playerData = players(
+                        first_name = form.first_name.data,
+                        last_name = form.last_name.data,
+                        fav_genre_id = form.fav_genre_id.data,
+                        email = form.email.data,
+                        fav_game_id = form.fav_game_id.data
+                        )
+                db.session.add(playerData)
+                db.session.commit()
+                return redirect(url_for('home'))
+        else:
+                print(form.errors)
 
-	return render_template('post.html', title='post', form=form)
+        return render_template('post.html', title='post', form=form)
 
-@app.route('/home/delete', methods=['GET', 'POST']):
+@app.route('/home/<int:player_id>/update', methods=['GET', 'POST'])
 def update():
         form = UpdateForm()
         if form.validate_on_submit():
@@ -80,6 +82,10 @@ def update():
             form.fav_game_id.data = current_user.fav_game_id
         return render_template('update.html', title='Update', form=form)
 
-@app.route('/home/update', methods=['GET', 'POST']):
-        
-        return render_template('update.html', title='Update', form=form)
+@app.route('/home/delete', methods=['GET', 'POST'])
+def delete():
+            delete = DeleteForm()
+            customer = Players.query.filter_by(first_name==player_firstname, last_name==player_lastname).first()
+            db.session.delete(customer)
+            db.session.commit()
+            return redirect (url_for('home'))

@@ -1,4 +1,4 @@
-{% extends "layout.html"}
+{% extends "layout.html" %}
 {% block body_content %}
 	<h1>List of Genres</h1>
         {% if genres %}
@@ -7,13 +7,14 @@
                         <div>
                                 <h2>{{ genre.genre_name }}</h2>
                         </div>
+		{% endfor %}
 	{% else %}
                 <p>There are no genres</P>
 	{% endif %}
 	
 	<div class='form' action=''>
 		<form method='POST' action=''>
-			(( form.hidden_tag() }}
+			{{ form.hidden_tag() }}
 			{{ form.genre_name.label }}
 			{{ form.genre_name }}
 			<br>

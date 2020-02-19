@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body_content %}
-
+{{ form.hidden_tag() }}
 	 <h1>List Of Games</h1>
         	{% if games %}
                 	{% for game in games %}
@@ -25,11 +25,12 @@
 						</tr>
 					</table>  
                         	</div>
+			{% endfor %}
         	{% else %}
                 	<p>There are no games</P>
+		{% endif %}
 	<div class='form' action=''>
 		<form method='POST' action=''>
-			{{ form.hidden_tag }}
 			{{ form.game_name.label }}
 			{{ form.game_name }}
 			<br>
@@ -43,7 +44,7 @@
 			{{ form.company }}
 			<br>
 			{{ form.main_platform.label }}
-			{{ form.main_platfrom }}
+			{{ form.main_platform }}
 			<br>
 			{{ form.buyer_id.label }}
 			{{ form.buyer_id }}

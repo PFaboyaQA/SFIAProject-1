@@ -10,7 +10,9 @@
 				<p>Email: {{ player.email }}</p>
 				<p>Favourite Game: {{ player.fav_game_id }}</p>
 			</div>
+		{% endfor %}
+	
 	{% else %}
 		<p>There are no players</P>
-
+	{% endif %}
 {% endblock %}
