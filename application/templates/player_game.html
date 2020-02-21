@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body_content %}
+	<h2>Games<h2>
+	<div class='form'>
+		{{ form.game_name.label }}
+		{{ form.game_name }}
+		<br>
+		{{ form.playergame.player_id.label }}
+		{{ form.playergame.player_id }}
+		<br>
+		{{ form.submit }}
+	</div>

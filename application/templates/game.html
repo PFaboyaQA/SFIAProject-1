@@ -6,22 +6,25 @@
                 	{% for game in games %}
 
                         	<div>
-					<table style="width:100%">
+					<table style="width:70%">
 						<tr>
 							<th>Name</th>
 							<th>Genre</th>
 							<th>Price<th>
 							<th>Company</th>
 							<th>Main Platform</th>
-							<th>Buyer</h>
+							<th>Buyer</th>
+							<th>Genre</th>
 						</tr>
-						<tr>
+						<tr>	
+					
 							<td>{{ game.game_name }}</td>
-							<td>{{ game.genre_id }}</td>
-							<td>{{ game.price }}</td>
+							<td>{{ game.game.genre_id }}</td>
+							<td>{{ game.Price }}</td>
 							<td>{{ game.company }}</td>
 							<td>{{ game.main_platform }}</td>
 							<td>{{ game.buyer_id }}</td>
+							<td>{{ game.genre_id }}</td>
 						</tr>
 					</table>  
                         	</div>
@@ -34,9 +37,6 @@
 			{{ form.game_name.label }}
 			{{ form.game_name }}
 			<br>
-			{{ form.genre_id.label }}
-			{{ form.genre_id }}
-			<br>
 			{{ form.price.label }}
 			{{ form.price }}
 			<br>
@@ -48,6 +48,9 @@
 			<br>
 			{{ form.buyer_id.label }}
 			{{ form.buyer_id }}
+			<br>
+			{{ form.genre_id.label }}
+			{{ form.genre_id }}
 			<br>
 			{{ form.submit }}
 		</form>

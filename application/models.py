@@ -4,9 +4,8 @@ class Players(db.Model):
         player_id = db.Column(db.Integer, primary_key=True)
         first_name = db.Column(db.String(30), nullable=False)
         last_name = db.Column(db.String(30), nullable=False)
-        fav_genres = db.relationship('Genres', backref='playergenre', lazy=True)
         email = db.Column(db.String(50), nullable=False, unique=True)
-        games = db.relationship('Games', backref='player', lazy=True)
+        games = db.relationship('Games', backref='playergame', lazy=True)
 
         def __repr__(self):
                 return ''.join([
@@ -17,8 +16,7 @@ class Players(db.Model):
 class Genres(db.Model):
         genre_id = db.Column(db.Integer, primary_key=True)
         genre_name = db.Column(db.String(30), nullable=False)
-        player_id = db.Column(db.Integer, db.ForeignKey('players.player_id'), nullable=False)
-        game_id = db.Column(db.Integer, db.ForeignKey('games.game_id'), nullable=False)
+        genre = db.relationship('Games', backref='gamegenre', lazy=True)
 
         def __repr__(self):
                 'genre: ', self.genre_name, '\r\n'
@@ -29,9 +27,11 @@ class Games(db.Model):
         Price = db.Column(db.Integer, nullable=False)
         company = db.Column(db.String(40), nullable=False)
         main_platform = db.Column(db.String(30), nullable=False)
-        buyer_id = db.Column(db.Integer, db.ForeignKey('players.player_id'), nullable=False)
-        genre = db.relationship('Genres', backref='game', lazy=True)
+        buyer_id = db.Column(db.Integer, db.ForeignKey('players.player_id'))
+        genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'), nullable=False)
+        
 
         def __repr__(self):
                 'game: ', self.game_name, self.company, self.main_platform, '\r\n'
                 'sale: ', self.buyer_id, self.price
+

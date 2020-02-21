@@ -6,9 +6,10 @@
 
 			<div>
 				<h2>Name: {{ player.first_name }} {{ player.last_name}}</h2>
-				<p>Favourite Genre: {{ player.fav_genre_id }}</p>
 				<p>Email: {{ player.email }}</p>
-				<p>Favourite Game: {{ player.fav_game_id }}</p>
+				<form>
+					<button action="{{ url_for('player_game') }}">Edit game</button>
+				</form>	
 			</div>
 		{% endfor %}
 	

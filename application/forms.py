@@ -18,22 +18,10 @@ class PlayerForm(FlaskForm):
                         Length(min=2, max=30)
                 ]
         )
-        fav_genre_id = IntegerField('Genre ID',
-                validators = [
-                        DataRequired(),
-                        NumberRange(min=1, max=100)
-                ]
-        )
         email = StringField('Email',
                 validators = [
                         DataRequired(),
                         Email()
-                ]
-        )
-        fav_game_id = IntegerField('Game ID',
-                validators = [
-                        DataRequired(),
-                        NumberRange(min=1, max=100)
                 ]
         )
         submit = SubmitField('Post!')
@@ -52,12 +40,6 @@ class AddGameForm(FlaskForm):
                 validators = [
                         DataRequired(),
                         Length(min=2, max=30)
-                ]
-        )
-        genre_id = IntegerField('Genre ID',
-                validators = [
-                        DataRequired(),
-                        NumberRange(min=1, max=100)
                 ]
         )
         price = DecimalField('Price', places=2,
@@ -79,10 +61,16 @@ class AddGameForm(FlaskForm):
         )
         buyer_id = IntegerField('Buyer ID',
                 validators = [
+                        NumberRange(min=1, max=100)
+                ]
+        )
+        genre_id = IntegerField('Genre ID',
+                validators = [
                         DataRequired(),
                         NumberRange(min=1, max=100)
                 ]
         )
+        submit = SubmitField('Add!')
 
 class UpdateForm(FlaskForm):
         first_name = StringField('First Name',
@@ -97,25 +85,52 @@ class UpdateForm(FlaskForm):
                                 Length(min=2, max=30)
                         ]
         )
-        fav_genre_id = IntegerField('Favourite Genre ID',
-                        validators = [
-                                DataRequired(),
-                                NumberRange(min=1, max=100)
-                        ]
-        )
         email = StringField('email',
                         validators = [
                                 DataRequired(),
                                 Email()
                         ]
         )
-        fav_game_id = IntegerField('Favourite Game ID',
-                        validators = [
-                                DataRequired(),
-                                NumberRange(min=1, max=100)
-                        ]
-        )
         submit = SubmitField('Update')
 
-     
+class DeleteForm(FlaskForm):
+        player_firstname = StringField('First Name',
+                validators = [
+                        DataRequired(),
+                        Length(min=2, max=30)
+                ]
+        )
+        player_lastname = StringField('Last Name',
+                validators = [
+                        DataRequired(),
+                        Length(min=2, max=30)
+                ]
+        )
+        submit = SubmitField('Delete Player')
 
+class DeleteGenreForm(FlaskForm):
+        genrename = StringField('Genre Name',
+                validators = [
+                        DataRequired(),
+                        Length(min=2, max=30)
+                    ]
+        )
+        submit = SubmitField('Delete Genre')
+
+class DeleteGameForm(FlaskForm):
+        gamename = StringField('Game Name',
+                validators = [
+                        DataRequired(),
+                        Length(min=2, max=30)
+                ]
+        )
+        submit = SubmitField('Delete Game')
+
+class AddPlayerGame(FlaskForm):
+        game_name = StringField('Game Name',
+                validators = [
+                        DataRequired(),
+                        Length(min=2, max=30)
+                    ]
+        )
+        submit = SubmitField('Change!')
