@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block body_content %}
-{{ form.hidden_tag() }}
 	 <h1>List Of Games</h1>
         	{% if games %}
                 	{% for game in games %}
@@ -9,8 +8,7 @@
 					<table style="width:70%">
 						<tr>
 							<th>Name</th>
-							<th>Genre</th>
-							<th>Price<th>
+							<th>Price (£)</th>
 							<th>Company</th>
 							<th>Main Platform</th>
 							<th>Buyer</th>
@@ -19,7 +17,6 @@
 						<tr>	
 					
 							<td>{{ game.game_name }}</td>
-							<td>{{ game.game.genre_id }}</td>
 							<td>{{ game.Price }}</td>
 							<td>{{ game.company }}</td>
 							<td>{{ game.main_platform }}</td>
@@ -34,6 +31,7 @@
 		{% endif %}
 	<div class='form' action=''>
 		<form method='POST' action=''>
+			{{ form.hidden_tag() }}
 			{{ form.game_name.label }}
 			{{ form.game_name }}
 			<br>

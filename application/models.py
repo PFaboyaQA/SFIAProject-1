@@ -33,5 +33,5 @@ class Games(db.Model):
 
         def __repr__(self):
                 'game: ', self.game_name, self.company, self.main_platform, '\r\n'
-                'sale: ', self.buyer_id, self.price
+                'sale: ', str(self.buyer_id), str(self.Price)
 

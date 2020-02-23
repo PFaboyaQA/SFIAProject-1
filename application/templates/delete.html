@@ -2,7 +2,8 @@
 {% block body_content %}
 
 	<h2>Delete a Player</h2>
-	<form action='{{ url_for('delete') }}'>
+	<form method='POST' action='{{ url_for('delete') }}'>
+		{{ delete.hidden_tag() }}
 		{{ delete.player_firstname.label }} {{delete.player_lastname.label }}
 		{{ delete.player_firstname }} {{ delete.player_lastname }}
 		<br>
@@ -11,6 +12,7 @@
 	<br>
 	<h2>Delete a Genre</h2>
 	<form action='{{ url_for('delete') }}'>
+		{{ delete_genre.hidden_tag() }}
 		{{ delete_genre.genrename.label }}
 		{{ delete_genre.genrename }}
 		<br>
@@ -19,6 +21,7 @@
 	<br>
 	<h2>Delete a Game</h2>
 	<form action='{{ url_for('delete') }}'>
+		{{ delete_game.hidden_tag() }}
 		{{ delete_game.gamename.label }}
 		{{ delete_game.gamename }}
 		<br>

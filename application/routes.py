@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, request
 from application import app, db
-from application.forms import AddGenreForm, AddGameForm, PlayerForm, DeleteForm, DeleteGenreForm, DeleteGameForm, AddPlayerGame
+from application.forms import AddGenreForm, AddGameForm, PlayerForm, DeleteForm, UpdateForm, DeleteGenreForm, DeleteGameForm, AddPlayerGame
 from application.models import Players, Genres, Games
 
 @app.route('/')
@@ -28,23 +28,23 @@ def genre():
 @app.route('/game/<player_id>')
 def player_game(player_id):
     player = Players.query.filter_by(player_id = player_id).first()
-    add_game = AddPlayerGame()
-    if add_game.validate_on_submit():
-        add_game_to_db = Games(
+    form = AddPlayerGame()
+    if form.validate_on_submit():
+        form_to_db = Games(
                 game_name=form.game_name.data,
                 playergame = player)
         return redirect (url_for('home'))
     elif request.method == "GET":
         form.game_name.data = Games.game_name
-    return render_template('player_game.html', title='players games', form=add_game)
+    return render_template('player_game.html', title='players games', form=form)
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
         add_game = AddGameForm()
         if add_game.validate_on_submit():
                 add_game_to_db = Games(
-                                name = add_game.game_name.data,
-                                price = add_game.price.data,
+                                game_name = add_game.game_name.data,
+                                Price = add_game.price.data,
                                 company = add_game.company.data,
                                 main_platform = add_game.main_platform.data,
                                 buyer_id = add_game.buyer_id.data,
@@ -96,27 +96,41 @@ def update():
 def delete(): 
             delete = DeleteForm()
             if delete.validate_on_submit():
-                customer = Players.query.filter_by(first_name==player_firstname, last_name==player_lastname).first()
+                customer = Players.query.filter_by(first_name=delete.player_firstname.data, last_name=delete.player_lastname.data).first()
+                #games = Games.query.filter_by(buyer_id=customer.player_id)
+                #for game in games:
+                 #   db.session.delete(game)
                 db.session.delete(customer)
                 db.session.commit()
                 return redirect (url_for('home'))
+            else:
+                print("doesnt work")
             delete_genre = DeleteGenreForm()
             if delete_genre.validate_on_submit():
-                category = Genre.query.filter_by(genre_name==genrename).first()
-                db.session.delete_genre(category)
+                category = Genres.query.filter_by(genre_name=genrename).first()
+                db.session.delete(category)
                 db.session.commit()
                 return redirect (url_for('genre'))
             delete_game = DeleteGameForm()
             if delete_game.validate_on_submit():
-                item = Game.query.filter_by(game_name==gamename).first()
-                db.session.delete_game(item)
+                item = Games.query.filter_by(game_name=gamename).first()
+                db.session.delete(item)
                 db.session.commit()
                 return redirect (url_for('game'))
             return render_template('delete.html', title='Delete', delete=delete, delete_genre=delete_genre, delete_game=delete_game)
             
-@app.route('/home/<player_id>')
+@app.route('/home/<player_id>', methods=['GET','POST'])
 def playerid(player_id):
-            playerData = Players.query.filter_by(player_id==player_id)
-            return render_template('playerid.html', title='Player', player=playerData)
+    playerData = Players.query.filter_by(player_id=player_id).first()
+    print(playerData)
+    form = UpdateForm()
+    if form.validate_on_submit():
+        playerData.first_name=form.first_name.data
+        playerData.last_name=form.last_name.data
+        playerData.email=form.email.data
+        db.session.add(playerData)
+        db.session.commit()
+        return redirect (url_for('home'))
+    return render_template('playerid.html', title='Player', player=playerData, form=form)
 
 

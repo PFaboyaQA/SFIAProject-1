@@ -5,9 +5,10 @@
 		{% for player in players %}
 
 			<div>
+				<p> {{ player.player_id}}
 				<h2>Name: {{ player.first_name }} {{ player.last_name}}</h2>
 				<p>Email: {{ player.email }}</p>
-				<form action="game/player_id=player.player_id">
+				<form action="/home/{{player.player_id}}">
 					<button type="submit">Edit game</button>
 				</form>	
 			</div>
