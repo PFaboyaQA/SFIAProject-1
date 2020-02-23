@@ -28,7 +28,7 @@ class Games(db.Model):
         company = db.Column(db.String(40), nullable=False)
         main_platform = db.Column(db.String(30), nullable=False)
         buyer_id = db.Column(db.Integer, db.ForeignKey('players.player_id'))
-        genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'), nullable=False)
+        genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'))
         
 
         def __repr__(self):

@@ -11,7 +11,7 @@
 	</form>
 	<br>
 	<h2>Delete a Genre</h2>
-	<form action='{{ url_for('delete') }}'>
+	<form method='POST' action='{{ url_for('delete') }}'>
 		{{ delete_genre.hidden_tag() }}
 		{{ delete_genre.genrename.label }}
 		{{ delete_genre.genrename }}
@@ -20,7 +20,7 @@
 	</form>
 	<br>
 	<h2>Delete a Game</h2>
-	<form action='{{ url_for('delete') }}'>
+	<form method='POST' action='{{ url_for('delete') }}'>
 		{{ delete_game.hidden_tag() }}
 		{{ delete_game.gamename.label }}
 		{{ delete_game.gamename }}

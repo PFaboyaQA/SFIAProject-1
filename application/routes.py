@@ -25,19 +25,6 @@ def genre():
 	        genreData = Genres.query.all()
         return render_template('genre.html', title='Genre', genres=genreData, form=add_genre)
 
-@app.route('/game/<player_id>')
-def player_game(player_id):
-    player = Players.query.filter_by(player_id = player_id).first()
-    form = AddPlayerGame()
-    if form.validate_on_submit():
-        form_to_db = Games(
-                game_name=form.game_name.data,
-                playergame = player)
-        return redirect (url_for('home'))
-    elif request.method == "GET":
-        form.game_name.data = Games.game_name
-    return render_template('player_game.html', title='players games', form=form)
-
 @app.route('/game', methods=['GET', 'POST'])
 def game():
         add_game = AddGameForm()
@@ -97,23 +84,18 @@ def delete():
             delete = DeleteForm()
             if delete.validate_on_submit():
                 customer = Players.query.filter_by(first_name=delete.player_firstname.data, last_name=delete.player_lastname.data).first()
-                #games = Games.query.filter_by(buyer_id=customer.player_id)
-                #for game in games:
-                 #   db.session.delete(game)
                 db.session.delete(customer)
                 db.session.commit()
                 return redirect (url_for('home'))
-            else:
-                print("doesnt work")
             delete_genre = DeleteGenreForm()
             if delete_genre.validate_on_submit():
-                category = Genres.query.filter_by(genre_name=genrename).first()
+                category = Genres.query.filter_by(genre_name=delete_genre.genrename.data).first()
                 db.session.delete(category)
                 db.session.commit()
                 return redirect (url_for('genre'))
             delete_game = DeleteGameForm()
             if delete_game.validate_on_submit():
-                item = Games.query.filter_by(game_name=gamename).first()
+                item = Games.query.filter_by(game_name=delete_game.gamename.data).first()
                 db.session.delete(item)
                 db.session.commit()
                 return redirect (url_for('game'))
