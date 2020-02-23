@@ -6,11 +6,14 @@
 
 			<div>
 				<h2>Name: {{ player.first_name }} {{ player.last_name}}</h2>
-				<p>Favourite Genre: {{ player.fav_genre_id }}</p>
 				<p>Email: {{ player.email }}</p>
-				<p>Favourite Game: {{ player.fav_game_id }}</p>
+				<form action="/home/{{player.player_id}}">
+					<button type="submit">Edit</button>
+				</form>	
 			</div>
+		{% endfor %}
+	
 	{% else %}
 		<p>There are no players</P>
-
+	{% endif %}
 {% endblock %}
