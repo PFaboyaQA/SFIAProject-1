@@ -7,8 +7,8 @@
 			<div>
 				<h2>Name: {{ player.first_name }} {{ player.last_name}}</h2>
 				<p>Email: {{ player.email }}</p>
-				<form>
-					<button action="{{ url_for('player_game') }}">Edit game</button>
+				<form action="game/player_id=player.player_id">
+					<button type="submit">Edit game</button>
 				</form>	
 			</div>
 		{% endfor %}

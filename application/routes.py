@@ -35,7 +35,7 @@ def player_game(player_id):
                 playergame = player)
         return redirect (url_for('home'))
     elif request.method == "GET":
-        form.game_name.data = game_name
+        form.game_name.data = Games.game_name
     return render_template('player_game.html', title='players games', form=add_game)
 
 @app.route('/game', methods=['GET', 'POST'])
