@@ -12,7 +12,13 @@ The goal of this project was to create an OOP-based web-app using flask and othe
 
 I have created a database for a games store to store customer information and information about games in order to ensure things are more organised
 
-## Architecture
+## Architecture 
+
+## Entity Relationship Diagram
+
+### Initial Plan
+
+### Delivered plan
 
 ## Deployment
 
