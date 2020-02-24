@@ -6,9 +6,24 @@
 
 ## The Brief
 
+The goal of this project was to create an OOP-based web-app using flask and other tools that have been introduced during the training. There should be at least two tables with full CRUD functionality
+
+### Solution
+
+I have created a database for a games store to store customer information and information about games in order to ensure things are more organised
+
 ## Architecture
 
 ## Deployment
+
+### Technology used
+
+GCP - virtual environment and database
+Flask - Python framework
+Jenkins - Automation
+Git - VCS
+Trello - Project tracking
+Python- Coding
 
 ## Improvement for the Future
 
