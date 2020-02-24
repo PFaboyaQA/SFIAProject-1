@@ -20,6 +20,10 @@ I have created a database for a games store to store customer information and in
 
 ### Delivered plan
 
+![Delivered ERD](/pictures/ERD.png)
+
+Here we can see the delivered ERD plan and the relationships between each tables, here its shows the one to many relationships for example many games can belong to a specific Genre. 
+
 ## Deployment
 
 ### Technology used
@@ -40,3 +44,6 @@ I would also like to incorporate more tables into the web-app, that include a li
 A login system will be beneficial as this will increase the security of the system. It will ensure that only authorized personnel can operate the delete and update functions and helps prevent any theft of data. Along with this can be the introduction to admins and regular users that gives raise to different permissions and how each account type can interact with the app in different ways.
 
 ## Acknowledgements
+
+* QA consulting and the instructors
+* My fellow colleagues in my class
