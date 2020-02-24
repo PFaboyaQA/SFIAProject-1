@@ -31,7 +31,7 @@ I have created a database for a games store to store customer information and in
 
 ### Initial Plan
 
-![Initial ERD](/pictures/ERD_orginal.png)
+![Initial ERD](/pictures/ERD_original.png)
 
 Here is the original plan that will probably be implemented in further sprints. The database will contain two more tables with a relationship towards the Games table. However in order to achieve the MVP I decided to deliver a web-app that utilises three tables
 
