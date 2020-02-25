@@ -47,10 +47,15 @@ Here we can see the delivered ERD plan and the relationships between each tables
 ### Technology used
 
 GCP - virtual environment and database
+
 Flask - Python framework
+
 Jenkins - Automation
+
 Git - VCS
+
 Trello - Project tracking
+
 Python- Coding
 
 <a name="improve"></a>
