@@ -62,23 +62,6 @@ def post():
 
         return render_template('post.html', title='post', form=form)
 
-@app.route('/home/<int:player_id>/update', methods=['GET', 'POST'])
-def update():
-        form = UpdateForm()
-        if form.validate_on_submit():
-            current_user.first_name = form.first_name.data
-            current_user.last_name = form.last_name.data
-            current_user.email = form.email.data
-            current_user.fav_game_id = form.fav_game_id.data
-            db.session.commit()
-            return redirect(url_for('update'))
-        elif request.method == 'GET':
-            form.first_name.data = current_user.first_name
-            form.last_name.data = current_user.last_name
-            form.email.data = current_user.email
-            form.fav_game_id.data = current_user.fav_game_id
-        return render_template('update.html', title='Update', form=form)
-
 @app.route('/delete', methods=['GET', 'POST'])
 def delete(): 
             delete = DeleteForm()
