@@ -1,2 +1,5 @@
 venv
 *.md
+*vsdx
+**/__pycache__
+**/*.pyc
